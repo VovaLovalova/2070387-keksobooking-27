@@ -1,39 +1,23 @@
 function getRandomNumberInteger (minNumber, maxNumber) {
-  if (minNumber >= 0 && maxNumber >= 0)
-  {
-    if (minNumber <= maxNumber)
-    {
-      minNumber = Math.ceil(minNumber);
-      maxNumber = Math.floor(maxNumber);
-      return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-    } else {
-      let temp = minNumber;
-      minNumber = maxNumber;
-      maxNumber = temp;
-      minNumber = Math.ceil(minNumber);
-      maxNumber = Math.floor(maxNumber);
-      return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-    }
+  let min = Math.min(minNumber, maxNumber);
+  let max = Math.max(minNumber, maxNumber);
+  if (min >= 0 && max >= 0) {
+    min = Math.floor(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   } else {
     return NaN;
   }
 }
 
-console.log(getRandomNumberInteger(1.5,1.9));
+console.log(getRandomNumberInteger(1.5, 1.9));
 
 
 function getRandomNumberFractional (minNumber, maxNumber) {
-  if (minNumber >= 0 && maxNumber >= 0)
-  {
-    if (minNumber <= maxNumber)
-    {
-      return Math.random() * (maxNumber - minNumber + 1) + minNumber;
-    } else {
-      let temp = minNumber;
-      minNumber = maxNumber;
-      maxNumber = temp;
-      return Math.random() * (maxNumber - minNumber + 1) + minNumber;
-    }
+  const min = Math.min(minNumber, maxNumber);
+  const max = Math.max(minNumber, maxNumber);
+  if (min >= 0 && max >= 0) {
+    return Math.random() * (max - min + 1) + min;
   } else {
     return NaN;
   }
