@@ -119,72 +119,37 @@ const LONGITUDE = {
   max: 139.80000,
 };
 
-//МАССИВ ИЗ 10 ОБЪЕКТОВ AUTOR - проблема - рандомно создаются объекты с одинаковыми значениями аватаров.
-
 function getRandomArrayElement (elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 };
 
-function createAutor () {
-  return autor = {
-    avatar: getRandomArrayElement(AUTOR_LIST),
+function getNewData () {
+  const getRandLat = getRandomPositiveFloat(LATITUDE.min, LATITUDE.max, digits = 5);
+  const getRandLng = getRandomPositiveFloat(LONGITUDE.min, LONGITUDE.max, digits = 5);
+  return {
+    autor: {
+      avatar: getRandomArrayElement(AUTOR_LIST),
+    },
+    offer: {
+      title: getRandomArrayElement(TITLE),
+      addres: `${getRandLat}, ${getRandLng}`,
+      price: getRandomPositiveInteger (PRICE.min, PRICE.max),
+      type: getRandomArrayElement (TYPE),
+      rooms: getRandomPositiveInteger (ROOMS.min, ROOMS.max),
+      guests: getRandomPositiveInteger (GUESTS.min, GUESTS.max),
+      checkin: getRandomArrayElement (CHECKIN),
+      checkout: getRandomArrayElement (CHECKOUT),
+      features: FEATURES.slice().sort(function () { return Math.random() - 0.5 }).slice(getRandomPositiveInteger(0, FEATURES.length)),
+      description: getRandomArrayElement(DESCRIPTION),
+      photos: PHOTOS.slice().sort(function () { return Math.random() - 0.5 }).slice(getRandomPositiveInteger(0, PHOTOS.length)),
+    },
+    location: {
+      lat: getRandLat,
+      lng: getRandLng,
+    }
   }
 };
 
-let autorList = Array.from({length: COUNT}, createAutor);
+let dataList = Array.from({length: COUNT}, getNewData);
 
-console.log(autorList);
-
-//МАССИВ ИЗ 10 ОБЪЕКТОВ OFFER
-// проблема - adress как сослаться на ту же строку из массива
-// проблема не понятно как создать массив случайной длинны из массива
-
-
-function getRandomArrayElement (elements) {
-  return elements[getRandomPositiveInteger(0, elements.length - 1)];
-};
-
-// Попытка создать массив случайной длины из дурого массива
-// function createFeatures () {
-//   return features = [];
-// };
-
-// let featuresList = Array.from({length: getRandomPositiveInteger (1, FEATURES.length)}, createFeatures);
-
-// console.log(featuresList);
-
-function createOffer () {
-  return offer = {
-    title: getRandomArrayElement(TITLE),
-    addres: '',
-    price: getRandomPositiveInteger (PRICE.min, PRICE.max),
-    type: getRandomArrayElement (TYPE),
-    rooms: getRandomPositiveInteger (ROOMS.min, ROOMS.max),
-    guests: getRandomPositiveInteger (GUESTS.min, GUESTS.max),
-    checkin: getRandomArrayElement (CHECKIN),
-    checkout: getRandomArrayElement (CHECKOUT),
-    features: '',
-    description: getRandomArrayElement(DESCRIPTION),
-    photos: '',
-  }
-};
-
-let offerList = Array.from({length: COUNT}, createOffer);
-
-console.log(offerList);
-
-//МАССИВ ИЗ 10 ОБЪЕКТОВ LOCATION - проблема - некоторые координаты получают меньше 5 знаков после запятой.
-
-function createLocation () {
-  let getRandLat = getRandomPositiveFloat(LATITUDE.min, LATITUDE.max, digits = 5);
-  let getRandLng = getRandomPositiveFloat(LONGITUDE.min, LONGITUDE.max, digits = 5);
-  let location;
-  return location = {
-    lat: getRandLat,
-    lng: getRandLng,
-  };
-};
-
-let locationList = Array.from({length: COUNT}, createLocation);
-
-console.log(locationList);
+console.log(dataList);
