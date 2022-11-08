@@ -71,12 +71,12 @@ const typeCosts = {
   palace: '10000'
 };
 
-function setMinPrice () {
+function handlerSetMinPrice () {
   price.setAttribute('placeholder', typeCosts[typeOfHousing.value]);
   price.setAttribute('min', typeCosts[typeOfHousing.value]);
 }
 
-typeOfHousing.addEventListener('change', setMinPrice);
+typeOfHousing.addEventListener('change', handlerSetMinPrice);
 
 function validatePrice () {
   return Number(price.value) > Number(typeCosts[typeOfHousing.value]);

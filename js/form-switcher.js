@@ -1,18 +1,18 @@
 const formElement = document.querySelector('.ad-form');
 const fieldsets = formElement.querySelectorAll('fieldset');
 
-const turnOffForm = function () {
+const handlerTurnOffForm = function () {
   formElement.classList.add('ad-form--disabled');
   fieldsets.forEach((fieldset) => {
     fieldset.disabled = true;
   });
 };
 
-const turnOnForm = function () {
+const handlerTurnOnForm = function () {
   formElement.classList.remove('ad-form--disabled');
   fieldsets.forEach((fieldset) => {
     fieldset.disabled = false;
   });
 };
 
-export {turnOffForm, turnOnForm};
+export {handlerTurnOffForm, handlerTurnOnForm};

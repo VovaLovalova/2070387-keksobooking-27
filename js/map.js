@@ -1,18 +1,18 @@
 import {generateData} from './data.js';
-import {turnOffForm, turnOnForm} from './form-switcher.js';
-import {turnOffMapFilters, turnOnMapFilters} from './filter-switcher.js';
+import {handlerTurnOffForm, handlerTurnOnForm} from './form-switcher.js';
+import {handlerTurnOffMapFilters, handlerTurnOnMapFilters} from './filter-switcher.js';
 import {getNewCardElement} from './markup.js';
 const resetButton = document.querySelector('.ad-form__reset');
 const adress = document.querySelector('#address');
 
 // НЕАКТИВНОЕ СОСТОЯНИЕ ФОРМЫ И ФИЛЬТРОВ ДО ЗАГРУЗКИ КАРТЫ
-document.addEventListener('load', turnOffForm());
-document.addEventListener('load', turnOffMapFilters());
+document.addEventListener('load', handlerTurnOffForm);
+document.addEventListener('load', handlerTurnOffMapFilters);
 
 //  СОЗДАНИЕ КАРТЫ И АКТИВАЦИЯ ФОРМЫ И ФИЛЬТРОВ
 const map = L.map('map-canvas')
-  .on('load', turnOnForm)
-  .on('load', turnOnMapFilters)
+  .on('load', handlerTurnOnForm)
+  .on('load', handlerTurnOnMapFilters)
   .setView({
     lat: 35.67325,
     lng: 139.75908,
@@ -46,7 +46,7 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 
 // ПЕРЕДАЕМ КООРДИНАТЫ МАРКЕРА В АДРЕС - РЕШЕНИЕ НЕВЕРНОЕ
-mainPinMarker.on('moveend', (evt) => {
+mainPinMarker.on('move', (evt) => {
   const latLang = evt.target.getLatLng().toString();
   const arr = latLang.split('');
   const Lat = arr.slice(7, 15).join('');
